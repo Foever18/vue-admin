@@ -35,8 +35,19 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    }
+    },
     // before: require('./mock/mock-server.js')
+    // 反向代理
+    proxy: {
+      'abc': {
+        target: 'http://ihrm.itheima.net/',
+        changeOrigin: true,
+        pathRewrite: {
+          // 路径重写,如果匹配到以/abc开头的则会吧/abc替换成''
+          '^/abc': ''
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
